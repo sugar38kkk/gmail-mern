@@ -4,7 +4,7 @@ import useHttpClient from "./useHttpClient";
 let logoutTimer;
 
 const useAuth = () => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("token") || false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(null);
   const [user, setUser] = useState({});

@@ -61,14 +61,14 @@ const LeftSideBar = () => {
                 Star
               </NavLink>
             </li>
-            {/* <li className='list__item hvr-bg-lt'>
-              <NavLink to='/Contact' exact>
+            <li className='list__item hvr-bg-lt'>
+              <NavLink to='/labels' exact>
                 <i>
                   <GrContact />
                 </i>
-                Contact
+                Label Management
               </NavLink>
-            </li> */}
+            </li>
           </ul>
           <div className='sidebar-tags'>
             <h3>Label</h3>

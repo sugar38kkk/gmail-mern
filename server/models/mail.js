@@ -29,13 +29,17 @@ const maillSchema = new Schema({
   },
   isPublic: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   isRead: {
     type: Boolean,
     default: false
   },
   isDeleted: {
+    type: Boolean,
+    default: false
+  },
+  isStar: {
     type: Boolean,
     default: false
   }

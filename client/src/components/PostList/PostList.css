@@ -142,7 +142,7 @@ POST PREVIEW
 
 @media (min-width: 768px) {
   .preview__reactions > * {
-    width: 45%;
+    width: 30%;
   }
 
   .reactions__text {

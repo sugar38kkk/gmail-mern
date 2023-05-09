@@ -13,6 +13,7 @@ import Tag from './pages/Tag/Tag';
 import Post from './pages/Post/Post';
 import Sent from './pages/Sent/Sent';
 import Trash from './pages/Trash/Trash';
+import Star from './pages/Star/Star';
 import SearchResults from './pages/SearchResults/SearchResults';
 import ReadingList from './pages/ReadingList/ReadingList';
 import Footer from './components/Footer/Footer';
@@ -35,6 +36,9 @@ const MainRouter = ({ token }) => {
           </Route>
           <Route path='/trash' exact>
             <Trash />
+          </Route>
+          <Route path='/star' exact>
+            <Star />
           </Route>
           <Route path='/users/:userId' exact>
             <UserProfile />
@@ -81,7 +85,7 @@ const MainRouter = ({ token }) => {
 
         <Switch>
           <Route path='/' exact>
-          <Auth newUser={true} />
+          <Auth newUser={false} />
           </Route>
           <Route path='/auth/new-user' exact>
             <Auth newUser={true} />

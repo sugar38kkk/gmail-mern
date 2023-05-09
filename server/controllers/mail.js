@@ -84,6 +84,22 @@ const getAllTrash = async (req, res, next) => {
   res.json({ mails: mails.map((post) => post.toObject({ getters: true })) });
 };
 
+const getAllStar = async (req, res, next) => {
+  let mails;
+  try {
+    mails = await Mail.find({
+      to: req.userData.phone,
+      isDeleted: false,
+      isStar: true
+    })
+      .sort({ date: "desc" })
+      .populate("sender");
+  } catch (err) {
+    return next(new HttpError("Could not fetch mails, please try again", 500));
+  }
+  res.json({ mails: mails.map((post) => post.toObject({ getters: true })) });
+};
+
 const getMailById = async (req, res, next) => {
   const { mailId } = req.params;
   let mail;
@@ -152,6 +168,7 @@ const getAllRepply = async (req, res, next) => {
   res.json({ mails: mails.map((post) => post.toObject({ getters: true })) });
 };
 
+
 const readMail = async (req, res, next) => {
   const { mailId } = req.params;
   let mail;
@@ -216,6 +233,48 @@ const moveToTrash = async (req, res, next) => {
   res.json({ isOk: true});
 };
 
+const starMail = async (req, res, next) => {
+  const { mailId } = req.params;
+  let mail;
+  try {
+    mail = await Mail.findById(mailId).populate("sender");
+    //findById works directly on the contructor fn
+  } catch (err) {
+    //stop execution in case of error
+    return next(new HttpError("Something went wrong with the server", 500));
+  }
+  if (!mail) {
+    return next(new HttpError("Could not find post for the provided ID", 404));
+  }
+
+  mail.isStar = true
+  await mail.save()
+  //post is a special mongoose obj; convert it to normal JS obj using toObject
+  //get rid of "_" in "_id" using { getters: true }
+  res.json({ isOk: true});
+};
+
+const unstarMail = async (req, res, next) => {
+  const { mailId } = req.params;
+  let mail;
+  try {
+    mail = await Mail.findById(mailId).populate("sender");
+    //findById works directly on the contructor fn
+  } catch (err) {
+    //stop execution in case of error
+    return next(new HttpError("Something went wrong with the server", 500));
+  }
+  if (!mail) {
+    return next(new HttpError("Could not find post for the provided ID", 404));
+  }
+
+  mail.isStar = false
+  await mail.save()
+  //post is a special mongoose obj; convert it to normal JS obj using toObject
+  //get rid of "_" in "_id" using { getters: true }
+  res.json({ isOk: true});
+};
+
 exports.createMail = createMail;
 exports.getAllInbox = getAllInbox;
 exports.getMailById = getMailById;
@@ -226,3 +285,6 @@ exports.unReadMail = unReadMail
 exports.moveToTrash = moveToTrash
 exports.getAllSent = getAllSent
 exports.getAllTrash = getAllTrash
+exports.starMail = starMail
+exports.unstarMail = unstarMail
+exports.getAllStar = getAllStar

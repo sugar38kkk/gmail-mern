@@ -1,12 +1,12 @@
-import React from 'react';
-import PostPreview from '../PostPreview/PostPreview';
-import SkeletonPostList from '../Skeleton/SkeletonPostList';
-import './PostList.css';
+import React from "react";
+import PostPreview from "../PostPreview/PostPreview";
+import SkeletonPostList from "../Skeleton/SkeletonPostList";
+import "./PostList.css";
 
 const PostList = (props) => {
   return (
-    <div className='container container-posts'>
-      {props.isLoading && <SkeletonPostList type={!props.cover && 'mini'} />}
+    <div className="container container-posts">
+      {props.isLoading && <SkeletonPostList type={!props.cover && "mini"} />}
       {!props.isLoading && (
         <ul>
           {props.items &&
@@ -22,12 +22,14 @@ const PostList = (props) => {
                   sender={post.sender}
                   isRead={post.isRead}
                   isDeleted={post.isDeleted}
-                  type = {props.type}
+                  type={props.type}
+                  isStar={post.isStar}
                 />
               );
             })}
         </ul>
       )}
+      {!props.items || (props.items.length <= 0 && <h3>No Email...</h3>)}
     </div>
   );
 };

@@ -16,7 +16,7 @@ const Posts = ({ cover, type = 'inbox' }) => {
           "GET",
           null,
           {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem('token') || currentUser.token}`,
           }
         );
         console.log(responseData);
