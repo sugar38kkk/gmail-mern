@@ -5,3 +5,11 @@ Tầm 1-2 tiếng nữa mình sẽ update code liên tục ở repo này... hi�
 ---------------------------
 Tính năng đang update:
 - draft mail
+# Chạy project bằng terminal
+ở đây có 2 folder: client và server đều chạy giống nhau
+- Mở terminal hoặc cmd,... chạy lệnh 
+`npm íntall`
+- Để chạy project gõ lệnh phía dưới tương ứng cho cả 2 folder
+`npm start`
+# start project bằng docker
+... comjing soon....
